@@ -1,4 +1,3 @@
-<!-- product_list.html -->
 {% extends 'base.html' %}
 
 {% block title %}Welcome to Medilab{% endblock %}
@@ -6,18 +5,35 @@
 {% block content %}
 <title>Product List</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    
+    .btn-primary {
+        background-color: var(--primary-color); 
+        border-color: var(--primary-color);
+        color: #ffffff; 
+    }
+
+    .btn-primary:hover {
+        background-color: var(--secondary-color); 
+        border-color: var(--secondary-color);
+    }
+
+</style>
 </head>
 <body>
 <div class="container mt-4">
     <a href="{% url 'add_medicine' %}" class="btn btn-primary mb-3">Add New Patient</a>
-    <h2>Product List</h2>
+    <h2>Patient List</h2>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>NIC</th>
                 <th>Age</th>
                 <th>Gender</th>
+                <th>Problem</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -25,12 +41,14 @@
             <tr>
                 <td>{{ patient.id }}</td>
                 <td>{{ patient.name }}</td>
+                <td>{{ patient.nic }}</td>
                 <td>{{ patient.age }}</td>
                 <td>{{ patient.gender }}</td>
+                <td>{{ patient.actions }}</td>
             </tr>
             {% empty %}
             <tr>
-                <td colspan="4">No patients available</td>
+                <td colspan="7">No patients available</td>
             </tr>
             {% endfor %}
         </tbody>

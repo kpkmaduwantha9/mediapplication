@@ -17,8 +17,8 @@
     <div class="top-bar">
         <div class="container">
             <div class="contact-info">
-                <i class="fas fa-envelope"></i> contact@example.com
-                <i class="fas fa-phone ms-4"></i> +1 5589 55488 55
+                <i class="fas fa-envelope"></i> medishop@gmail.com
+                <i class="fas fa-phone ms-4"></i> +947588963
             </div>
             <div class="social-links">
                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -91,11 +91,11 @@
     <style>
         /* Base Styles */
         :root {
-            --primary-color: #1977cc;
-            --secondary-color: #2c4964;
+            --primary-color: #3a7e7e;
+            --secondary-color: #66b2b2;
             --text-color: #444444;
-            --light-bg: #f1f7fd;
-            --box-color:#35C2F3;
+            --light-bg: #98dddd;
+            --box-color:#66b2b2;
         }
 
         body {
@@ -171,58 +171,48 @@
             color: var(--primary-color);
         }
 
-        .appointment-btn {
-            background: var(--primary-color);
-            color: white;
-            padding: 8px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .appointment-btn:hover {
-            background: #166ab5;
-        }
-
-        /* Footer */
+       
+       /* Footer */
         .footer {
-            background: var(--light-bg);
+            background: var(--primary-color); /* Primary color as background */
             padding: 60px 0;
-            color: var(--secondary-color);
+            color: #ffffff; /* White text for better contrast against the dark primary background */
         }
 
         .footer-content {
             display: flex;
-            justify-content: space-between; /* Evenly spread the sections */
-            flex-wrap: wrap; /* Ensure sections wrap on smaller screens */
-            gap: 30px; /* Add space between sections */
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
         }
 
         .footer-section h3 {
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 20px;
+            color: #ffffff;;
         }
 
         .footer-section ul {
             list-style: none;
             padding: 0;
+            
         }
 
         .footer-section ul li {
             margin-bottom: 10px;
+            color: #ffffff;;
         }
 
+        
+
         .footer-section a {
-            color: var(--secondary-color);
-            text-decoration: none;
+            color: #ffffff;
             transition: 0.3s;
         }
 
         .footer-section a:hover {
-            color: var(--primary-color);
+            color: var(--light-bg); 
         }
 
         .newsletter-form {
@@ -239,7 +229,7 @@
         }
 
         .newsletter-form button {
-            background: var(--primary-color);
+            background: var(--secondary-color); /* Use secondary color for the button */
             color: white;
             border: none;
             padding: 8px 20px;
@@ -249,42 +239,12 @@
         }
 
         .newsletter-form button:hover {
-            background: #166ab5;
+            background: var(--box-color); /* Lighter box color on hover */
         }
 
-        /* Dropdown Styles */
-        .dropdown {
-            position: relative;
-        }
+        
 
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-            padding: 10px 0;
-            min-width: 160px;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-
-        .dropdown-menu li {
-            padding: 8px 20px;
-        }
-
-        .dropdown-menu a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .dropdown-menu a:hover {
-            color: var(--primary-color);
-        }
+       
     </style>
 </body>
 </html>
