@@ -36,3 +36,24 @@ def delete_medicine(request, id):
     medicine = get_object_or_404(Medicine, id=id)
     medicine.delete()
     return redirect('medicine_home')  # Redirect back to the home page or wherever you want
+
+def edit_medicine(request, id):
+    medicine = get_object_or_404(Medicine, id=id)
+    
+    if request.method == 'POST':
+        form = MedicineForm(request.POST, instance=medicine)
+        if form.is_valid():
+            form.save()
+            return redirect('medicine_list')  
+    else:
+        form = MedicineForm(instance=medicine)
+    
+    return render(request, 'medicine/edit_medicine.html', {'form': form})
+
+from django.shortcuts import render
+from .models import Medicine
+
+
+def medicine_list(request):
+    products = Medicine.objects.all()  # Fetch all medicines from the database
+    return render(request, 'medicine/medicine_home.html', {'products': products})
