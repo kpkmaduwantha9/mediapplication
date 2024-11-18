@@ -1,3 +1,7 @@
+
+
+
+
 {% extends 'base.html' %}
 
 {% block title %}Add Medicine - MediShop{% endblock %}
@@ -58,61 +62,9 @@
         <div class="col-md-8">
             <div class="form-container">
                 <h2 class="mb-4">Add Medicine</h2>
-                <form>
+                <form method="post">
                     {% csrf_token %}
-
-                    <!-- Medicine Name -->
-                    <div class="mb-4">
-                        <label for="id_name" class="form-label">Name</label>
-                        <div class="text-center mb-2">
-                            <i class="bi bi-capsule fs-4"></i>
-                        </div>
-                        <input type="text" name="name" id="id_name" class="form-control" placeholder="Enter medicine name" required>
-                    </div>
-
-                    <!-- Description -->
-                    <div class="mb-4">
-                        <label for="id_description" class="form-label">Description</label>
-                        <textarea name="description" id="id_description" class="form-control" rows="4" placeholder="Enter description" required></textarea>
-                    </div>
-
-                    <!-- Price -->
-                    <div class="mb-4">
-                        <label for="id_price" class="form-label">Price</label>
-                        <div class="text-center mb-2">
-                            <i class="bi bi-currency-dollar fs-4"></i>
-                        </div>
-                        <input type="number" name="price" id="id_price" class="form-control" step="0.01" placeholder="Enter price" required>
-                    </div>
-
-                    <!-- Stock -->
-                    <div class="mb-4">
-                        <label for="id_stock" class="form-label">Stock</label>
-                        <div class="text-center mb-2">
-                            <i class="bi bi-box-seam fs-4"></i>
-                        </div>
-                        <input type="number" name="stock" id="id_stock" class="form-control" placeholder="Enter stock quantity" required>
-                    </div>
-
-                    <!-- Manufacturing Date -->
-                    <div class="mb-4">
-                        <label for="id_mfg_date" class="form-label">Manufacturing Date</label>
-                        <div class="text-center mb-2">
-                            <i class="bi bi-calendar-event fs-4"></i>
-                        </div>
-                        <input type="date" name="mfg_date" id="id_mfg_date" class="form-control" required>
-                    </div>
-
-                    <!-- Expiry Date -->
-                    <div class="mb-4">
-                        <label for="id_expiry_date" class="form-label">Expiry Date</label>
-                        <div class="text-center mb-2">
-                            <i class="bi bi-calendar-x fs-4"></i>
-                        </div>
-                        <input type="date" name="expiry_date" id="id_expiry_date" class="form-control" required>
-                    </div>
-
-                    <!-- Submit Button -->
+                    {{ form.as_p }}
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary btn-lg">
                             Add Medicine
