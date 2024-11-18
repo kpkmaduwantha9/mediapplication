@@ -43,7 +43,8 @@
                 <td>{{ patient.gender }}</td>
                 <td>{{ patient.problem }}</td>
                 <td>
-                    <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'edit_patient' patient.id %}" class="btn btn-warning btn-sm">Edit</a>
+
                     <a href="{% url 'delete_patient' patient.id %}" class="btn btn-danger btn-sm">Delete</a>
 
                 </td>
