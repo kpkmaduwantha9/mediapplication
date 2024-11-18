@@ -1,8 +1,8 @@
 from django.urls import path
 from . import views
 
-urlpatterns=[
-    path ('patienthome/', views.patient_home, name = 'patient_home'),
-    path ('addpatient/', views.add_patient, name = 'add_patient'),
-
+urlpatterns = [
+    path('patienthome/', views.patient_home, name='patient_home'),  # Patient home
+    path('addpatient/', views.add_patient, name='add_patient'),     # Add patient
+    path('delete_patient/<int:id>/', views.delete_patient, name='delete_patient'),
 ]

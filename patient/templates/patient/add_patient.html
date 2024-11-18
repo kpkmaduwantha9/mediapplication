@@ -4,70 +4,65 @@
 
 {% block content %}
 <title>Information Form</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            padding: 20px;
-        }
-        .form-container {
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .form-control {
-            background-color: #f8f7fd;
-        }
-        .form-label {
-            font-weight: 500;
-        }
-        .required::after {
-            content: " *";
-            color: red;
-        }
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    body {
+        background-color: #f8f9fa;
+        padding: 20px;
+    }
+    .form-container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .form-control {
+        background-color: #f8f7fd;
+    }
+    .form-label {
+        font-weight: 500;
+    }
+    .required::after {
+        content: " *";
+        color: red;
+    }
 
-        /* Custom button styling */
-        .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            color: #ffffff;
-        }
+    .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        color: #ffffff;
+    }
 
-        .btn-primary:hover {
-            background-color: var(--secondary-color);
-            border-color: var(--secondary-color);
-        }
+    .btn-primary:hover {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+    }
 
-        header {
+    header {
         margin-bottom: 40px;
-        }
+    }
 
-        footer {
-            margin-top: 40px;
-        }
+    footer {
+        margin-top: 40px;
+    }
 
-        .container {
-            margin-top: 50px;
-            margin-bottom: 50px;
-        }
+    .container {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+</style>
 
-    </style>
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="form-container">
-                    <h2 class="mb-4">Add Patient</h2>
-                    <form id="patientForm">
-                        {% csrf_token %}
-
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="form-container">
+                <h2 class="mb-4">Add Patient</h2>
+                <form id="patientForm" action="{% url 'add_patient' %}" method="post">
+                    {% csrf_token %}
+                    
                     <!-- Patient Name -->
                     <div class="mb-4">
                         <label for="id_name" class="form-label">Name</label>
-                        <div class="text-center mb-2">
-                            <i class="bi bi-capsule fs-4"></i>
-                        </div>
                         <input type="text" name="name" id="id_name" class="form-control" placeholder="Enter patient name" required>
                     </div>
 
@@ -80,30 +75,20 @@
                     <!-- Age -->
                     <div class="mb-4">
                         <label for="id_age" class="form-label">Age</label>
-                        <div class="text-center mb-2">
-                            <i class="bi bi-currency-dollar fs-4"></i>
-                        </div>
                         <input type="number" name="age" id="id_age" class="form-control" step="1" placeholder="Enter age" required>
                     </div>
 
                     <!-- Gender -->
                     <div class="mb-4">
                         <label for="id_gender" class="form-label">Gender</label>
-                        <div class="text-center mb-2">
-                            <i class="bi bi-gender-ambiguous fs-4"></i>
-                        </div>
                         <div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="gender" id="id_male" value="male" required>
-                                <label class="form-check-label" for="id_male">
-                                    Male
-                                </label>
+                                <label class="form-check-label" for="id_male">Male</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="gender" id="id_female" value="female" required>
-                                <label class="form-check-label" for="id_female">
-                                    Female
-                                </label>
+                                <label class="form-check-label" for="id_female">Female</label>
                             </div>
                         </div>
                     </div>
@@ -111,33 +96,27 @@
                     <!-- Problem -->
                     <div class="mb-4">
                         <label for="id_problem" class="form-label">Problem</label>
-                        <div class="text-center mb-2">
-                            <i class="bi bi-calendar-event fs-4"></i>
-                        </div>
-                        <input type="text" name="problem" id="id_problem" class="form-control" required>
+                        <input type="text" name="problem" id="id_problem" class="form-control" placeholder="Enter patient's problem" required>
                     </div>
 
                     <!-- Submit Button -->
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-lg">
-                            Add Patient
-                        </button>
+                        <button type="submit" class="btn btn-primary btn-lg">Add Patient</button>
                     </div>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        // JavaScript validation for age
-        document.getElementById('patientForm').addEventListener('submit', function(event) {
-            const age = document.getElementById('id_age').value;
-            if (age < 18) {
-                alert('Age must be 18 or higher');
-                event.preventDefault(); // Prevent form submission
-            }
-        });
-    </script>
-
+<script>
+    // JavaScript validation for age
+    document.getElementById('patientForm').addEventListener('submit', function(event) {
+        const age = document.getElementById('id_age').value;
+        if (age < 18) {
+            alert('Age must be 18 or higher');
+            event.preventDefault(); // Prevent form submission
+        }
+    });
+</script>
 {% endblock %}
