@@ -22,20 +22,20 @@ def add_medicine(request):
         form = MedicineForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('medicine-home')  # Corrected to redirect to 'medicine-home'
+            return redirect('medicine-home')  # redirect to 'medicine-home'
     else:
         form = MedicineForm()
     return render(request, 'medicine/add_medicine.html', {'form': form})
 
 def edit_medicine(request, id):
     medicine = get_object_or_404(Medicine, id=id)
-    # Add your logic to handle the edit form or rendering the edit page
+    # rendering the edit page
     return render(request, 'medicine/edit_medicine.html', {'medicine': medicine})
 
 def delete_medicine(request, id):
     medicine = get_object_or_404(Medicine, id=id)
     medicine.delete()
-    return redirect('medicine_home')  # Redirect back to the home page or wherever you want
+    return redirect('medicine_home')  # Redirect back to the home page
 
 def edit_medicine(request, id):
     medicine = get_object_or_404(Medicine, id=id)

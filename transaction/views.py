@@ -48,8 +48,8 @@ def add_transaction(request):
 
         # Create and save the transaction
         transaction = Transaction(
-            patient=patient,  # Ensure this is a valid Patient instance
-            medicine=medicine,  # Ensure this is a valid Medicine instance
+            patient=patient, 
+            medicine=medicine,  
             quantity=quantity
         )
         transaction.save()
@@ -68,5 +68,15 @@ def add_transaction(request):
     })
 
 def transaction_success(request):
-    # You can render a success template or return a simple message
+    # Yrender a success template 
     return render(request, 'transaction/success.html')
+
+
+def view_transactions(request):
+    # logic to view transactions
+    return render(request, 'transaction/view_transactions.html')
+
+
+def view_transactions(request):
+    transactions = Transaction.objects.all()  # Get all transactions
+    return render(request, 'transaction/view_transactions.html', {'transactions': transactions})

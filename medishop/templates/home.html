@@ -73,11 +73,6 @@
         line-height: 1.6;
     }
 
-
-   
-
-    
-
     @media (max-width: 992px) {
         .hero-text {
             padding-right: 0;
@@ -92,16 +87,15 @@
         }
     }
 
+    .btn-primary {
+        color: rgb(131, 255, 216);
+        transition: all 0.3s ease-in-out;
+    }
 
-.btn-primary {
-     color: rgb(131, 255, 216);
-    transition: all 0.3s ease-in-out;
-}
-
-.btn-primary:hover {
-    color: white;
-    box-shadow: 0 5px 15px rgba(0, 246, 209, 0.5);
-}
+    .btn-primary:hover {
+        color: white;
+        box-shadow: 0 5px 15px rgba(0, 246, 209, 0.5);
+    }
 
 </style>
 
@@ -112,14 +106,11 @@
                 <h1>WELCOME TO MEDILAB</h1>
                 <p class="subtitle">Sri Lanka's largest pharmaceutical retailer chain</p>
 
-                
-                
                 <div class="instruction">
-
                     <div class="instruction-step">
                         <h3>Create Transaction</h3>
                         <p>
-                           Sample text for admin only Sa Sample text for admin only Sample text for admin only Sample text for admin only mple text for admin only
+                           Sample text for admin only. Sample text for admin only. Sample text for admin only.
                         </p>
                     </div>
 
@@ -129,27 +120,36 @@
                         </a>
                     </div>
 
-                    <div class="instruction-step">
-                            <h3>Add Medicine</h3>
-                            <p>
-                                To add new medicine details, simply click on the <strong>Medicines</strong> link in the navigation 
-                                bar and select the <strong>Add Medicine</strong> button. Fill in the required details and submit 
-                                to add the medicine to the system.
-                            </p>
-                        </div>
-                        <div class="instruction-step">
-                            <h3>Add Patient</h3>
-                            <p>
-                                To add a new patient's information, click on the <strong>Patients</strong> link in the navigation 
-                                bar and then click the <strong>Add Patient</strong> button. Complete the form with the patient's 
-                                details and save it to add them to the system.
-                            </p>
-                        </div>
+                    <p>
+                        Log into admin to show view transaction button.
+                    </p>
 
-                       
-                        
+                    {% if user.is_staff %}
+                    <div class="mt-4">
+                        <a href="{% url 'view_transactions' %}" class="btn btn-primary btn-lg" style="border-radius: 5px; background-color: #3a7e7e; border: none; padding: 15px 30px; font-size: 18px; font-weight: 600; text-decoration: none;">
+                            View Transactions
+                        </a>
+                    </div>
+                    {% endif %}
+
+                    <div class="instruction-step">
+                        <h3>Add Medicine</h3>
+                        <p>
+                            To add new medicine details, click on the <strong>Medicines</strong> link in the navigation 
+                            bar and select the <strong>Add Medicine</strong> button. Fill in the required details and submit 
+                            to add the medicine to the system.
+                        </p>
+                    </div>
+                    <div class="instruction-step">
+                        <h3>Add Patient</h3>
+                        <p>
+                            To add a new patient's information, click on the <strong>Patients</strong> link in the navigation 
+                            bar and then click the <strong>Add Patient</strong> button. Complete the form with the patient's 
+                            details and save it to add them to the system.
+                        </p>
+                    </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
