@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.contrib import messages
 from patient.models import Patient
 from medicine.models import Medicine
@@ -11,6 +11,7 @@ def add_transaction(request):
         patient_id = request.POST.get('patient')
         medicine_id = request.POST.get('medicine')
         quantity = request.POST.get('quantity')
+        total = request.POST.get('total')  # Get total from form submission
 
         # Check if all required fields are filled
         if not patient_id or not medicine_id or not quantity:
@@ -46,11 +47,25 @@ def add_transaction(request):
             messages.error(request, "Invalid quantity value. Please enter a valid number.")
             return redirect('add_transaction')
 
+        # Calculate the total price
+        calculated_total = medicine.price * quantity
+        try:
+            total = float(total)
+        except ValueError:
+            messages.error(request, "Invalid total value.")
+            return redirect('add_transaction')
+
+        # Validate the total price
+        if total != calculated_total:
+            messages.error(request, "The total price does not match the calculated value.")
+            return redirect('add_transaction')
+
         # Create and save the transaction
         transaction = Transaction(
-            patient=patient, 
-            medicine=medicine,  
-            quantity=quantity
+            patient=patient,
+            medicine=medicine,
+            quantity=quantity,
+            total=calculated_total,  # Save the calculated total
         )
         transaction.save()
 
@@ -68,15 +83,10 @@ def add_transaction(request):
     })
 
 def transaction_success(request):
-    # Yrender a success template 
+    # Render a success template
     return render(request, 'transaction/success.html')
 
-
 def view_transactions(request):
-    # logic to view transactions
-    return render(request, 'transaction/view_transactions.html')
-
-
-def view_transactions(request):
-    transactions = Transaction.objects.all()  # Get all transactions
+    # Get all transactions
+    transactions = Transaction.objects.all()
     return render(request, 'transaction/view_transactions.html', {'transactions': transactions})

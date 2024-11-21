@@ -5,6 +5,8 @@
 {% block content %}
 <title>Transaction Form</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <style>
     body {
         background-color: #f8f9fa;
@@ -26,26 +28,21 @@
         content: " *";
         color: red;
     }
-
     .btn-primary {
         background-color: var(--primary-color);
         border-color: var(--primary-color);
         color: #ffffff;
     }
-
     .btn-primary:hover {
         background-color: var(--secondary-color);
         border-color: var(--secondary-color);
     }
-
     header {
         margin-bottom: 40px;
     }
-
     footer {
         margin-top: 40px;
     }
-
     .container {
         margin-top: 50px;
         margin-bottom: 50px;
@@ -75,7 +72,7 @@
                         <label for="id_medicine" class="form-label">Medicine</label>
                         <select name="medicine" id="id_medicine" class="form-control">
                             {% for medicine in medicines %}
-                                <option value="{{ medicine.id }}">{{ medicine.name }}</option>
+                                <option value="{{ medicine.id }}" data-price="{{ medicine.price }}">{{ medicine.name }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -83,22 +80,20 @@
                     <!-- Quantity -->
                     <div class="mb-4">
                         <label for="id_quantity" class="form-label">Quantity</label>
-                        <input type="number" name="quantity" id="id_quantity" class="form-control" placeholder="Enter quantity" min="1" required>
+                        <input type="number" name="quantity" id="id_quantity" class="form-control" placeholder="Enter quantity" min="1" value="1" required>
                     </div>
 
                     <!-- Price -->
                     <div class="mb-4">
                         <label for="id_price" class="form-label">Price</label>
-                        <input type="number" name="price" id="id_price" class="form-control" placeholder="Enter price" min="1" required>
+                        <input type="number" name="price" id="id_price" class="form-control" readonly>
                     </div>
 
                     <!-- Total -->
                     <div class="mb-4">
                         <label for="id_total" class="form-label">Total</label>
-                        <input type="number" name="total" id="id_total" class="form-control"  >
+                        <input type="number" name="total" id="id_total" class="form-control" readonly>
                     </div>
-
-                    
 
                     <!-- Submit Button -->
                     <div class="d-grid">
@@ -109,4 +104,28 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        function updateTotal() {
+            const price = parseFloat($("#id_price").val()) || 0;
+            const quantity = parseInt($("#id_quantity").val()) || 1;
+            $("#id_total").val(price * quantity);
+        }
+
+        $("#id_medicine").change(function () {
+            const selectedOption = $(this).find(":selected");
+            const price = selectedOption.data("price");
+            $("#id_price").val(price);
+            updateTotal();
+        });
+
+        $("#id_quantity").on("input", function () {
+            updateTotal();
+        });
+
+        // Trigger change on page load to populate price
+        $("#id_medicine").trigger("change");
+    });
+</script>
 {% endblock %}

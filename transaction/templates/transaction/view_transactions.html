@@ -56,6 +56,8 @@
                             <th>Patient</th>
                             <th>Medicine</th>
                             <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,6 +66,8 @@
                             <td>{{ transaction.patient.name }}</td>
                             <td>{{ transaction.medicine.name }}</td>
                             <td>{{ transaction.quantity }}</td>
+                            <td>{{ transaction.medicine.price }}</td>
+                            <td>{{transaction.total}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
