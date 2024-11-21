@@ -36,3 +36,4 @@ def edit_patient(request, id):
         return redirect('patient_home')  # Redirect to the patient list after editing
 
     return render(request, 'patient/edit_patient.html', {'patient': patient})
+

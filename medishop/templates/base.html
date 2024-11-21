@@ -45,6 +45,21 @@
                     <li><a href="{% url 'home' %}" class="active">Home</a></li>
                     <li><a href="{% url 'patient_home' %}">Patients</a></li>
                     <li><a href="{% url 'medicine_home' %}">Medicines</a></li>
+
+                    {% if user.is_staff %}
+                    <!-- <li><a href="{% url 'medicine_home' %}">Logout</a></li> -->
+                    <li>
+                        <a href="{% url 'medicine_home' %}" style="color: rgb(252, 0, 0); font-weight: bold; text-decoration: none;">
+                            Logout
+                        </a>
+                    </li>
+                    
+                    {% else %}
+                    <a href="{% url 'medicine_home' %}" style="color: rgb(18, 183, 0); font-weight: bold; text-decoration: none;">
+                        LogIn
+                    </a>
+                </li>
+                    {% endif %}
                 </ul>
                 
             </nav>

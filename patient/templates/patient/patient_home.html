@@ -16,11 +16,20 @@
         background-color: var(--secondary-color); 
         border-color: var(--secondary-color);
     }
+
+    .alert-text {
+        color: rgb(158, 0, 0);
+        font-size: 25px;
+        font-weight: 600;
+    }
 </style>
 
 <div class="container mt-4">
     <h2>Patient List</h2>
     <a href="{% url 'add_patient' %}" class="btn btn-primary mb-3">Add New Patient</a>
+
+
+    {% if user.is_staff %}
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -56,5 +65,13 @@
             {% endfor %}
         </tbody>
     </table>
+    {% else %}
+
+    <div class="message-container">
+        <p class="alert-text">Log in admin to view Patient</p>
+    </div>
+
+    {% endif %}
+
 </div>
 {% endblock %}

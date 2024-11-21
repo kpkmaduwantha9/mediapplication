@@ -115,9 +115,9 @@
 
 
 
-                    <!--! hhhh -->
+                    <!--! create -->
                     {% if user.is_staff %}
-                    <br>
+
                     <p>
                         Click the button below to create a transaction.
                     </p>
@@ -130,9 +130,6 @@
 
 
 
-                    <!--! hhhh -->
-
-
                     {% if user.is_staff %}
                     <div class="mt-4">
                         <a href="{% url 'add_transaction' %}" class="btn btn-primary btn-lg"
@@ -142,7 +139,9 @@
                     </div>
                     {% endif %}
 
+                    <!--! /create -->
 
+                    <br>
 
                     <div class="instruction-step">
                         <h3>View Transaction</h3>
@@ -150,14 +149,16 @@
 
 
 
+                    <!--! view -->
+
                     {% if user.is_staff %}
-                    <br>
+
                     <p>
                         Click the button below to view transactions.
                     </p>
                     {% else %}
                     <p style="color: rgb(158, 0, 0);">
-                        Log into admin view to view transactions.
+                        Log into admin view to transactions.
                     </p>
 
                     {% endif %}
@@ -173,6 +174,8 @@
                         </a>
                     </div>
                     {% endif %}
+
+                    <!--! /view -->
 
                     <div class="instruction-step">
                         <h3>Add Medicine</h3>
