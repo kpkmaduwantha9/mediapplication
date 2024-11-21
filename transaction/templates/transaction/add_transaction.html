@@ -70,7 +70,7 @@
                     <!-- Medicine -->
                     <div class="mb-4">
                         <label for="id_medicine" class="form-label">Medicine</label>
-                        <select name="medicine" id="id_medicine" class="form-control">
+                        <select name="medicine" id="id_medicine" class="form-control" >
                             {% for medicine in medicines %}
                                 <option value="{{ medicine.id }}" data-price="{{ medicine.price }}">{{ medicine.name }}</option>
                             {% endfor %}
@@ -86,13 +86,13 @@
                     <!-- Price -->
                     <div class="mb-4">
                         <label for="id_price" class="form-label">Price</label>
-                        <input type="number" name="price" id="id_price" class="form-control" readonly>
+                        <input type="number" name="price" id="id_price"  class="form-control" readonly>
                     </div>
 
                     <!-- Total -->
                     <div class="mb-4">
                         <label for="id_total" class="form-label">Total</label>
-                        <input type="number" name="total" id="id_total" class="form-control" readonly>
+                        <input type="number" name="total" id="id_total"  class="form-control" readonly>
                     </div>
 
                     <!-- Submit Button -->
@@ -104,7 +104,7 @@
         </div>
     </div>
 </div>
-
+<!-- 
 <script>
     $(document).ready(function () {
         function updateTotal() {
@@ -127,5 +127,37 @@
         // Trigger change on page load to populate price
         $("#id_medicine").trigger("change");
     });
+</script> -->
+
+<script>
+    $(document).ready(function () {
+        // Clear input fields on page load
+        $("#id_patient").prop("selectedIndex", -1);
+        $("#id_medicine").prop("selectedIndex", -1);
+        $("#id_quantity").val("");
+        $("#id_price").val("");
+        $("#id_total").val("");
+
+        // Function to update the total
+        function updateTotal() {
+            const price = parseFloat($("#id_price").val()) || 0;
+            const quantity = parseInt($("#id_quantity").val()) || 1;
+            $("#id_total").val(price * quantity);
+        }
+
+        // Update price and total when medicine selection changes
+        $("#id_medicine").change(function () {
+            const selectedOption = $(this).find(":selected");
+            const price = selectedOption.data("price");
+            $("#id_price").val(price);
+            updateTotal();
+        });
+
+        // Update total when quantity input changes
+        $("#id_quantity").on("input", function () {
+            updateTotal();
+        });
+    });
 </script>
+
 {% endblock %}
