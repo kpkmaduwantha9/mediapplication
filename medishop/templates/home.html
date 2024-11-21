@@ -48,13 +48,13 @@
         margin-bottom: 30px;
     }
 
-   .instruction {
+    .instruction {
         background: var(--box-color);
         color: white;
         padding: 40px;
         border-radius: 5px;
         width: 100%;
-        max-width: 100%; 
+        max-width: 100%;
         box-sizing: border-box;
         margin: 0 auto;
     }
@@ -63,6 +63,7 @@
         font-size: 28px;
         margin-bottom: 20px;
     }
+
     .instruction-step p {
         font-size: 20px;
         margin-bottom: 20px;
@@ -77,11 +78,11 @@
         .hero-text {
             padding-right: 0;
         }
-        
+
         .hero-content {
             flex-direction: column;
         }
-        
+
         .info-boxes {
             flex-direction: column;
         }
@@ -96,7 +97,6 @@
         color: white;
         box-shadow: 0 5px 15px rgba(0, 246, 209, 0.5);
     }
-
 </style>
 
 <section class="hero">
@@ -107,26 +107,68 @@
                 <p class="subtitle">Sri Lanka's largest pharmaceutical retailer chain</p>
 
                 <div class="instruction">
+
+
                     <div class="instruction-step">
                         <h3>Create Transaction</h3>
-                        <p>
-                           Click the button below to create a transaction.
-                        </p>
                     </div>
 
-                    <div class="mt-4">
-                        <a href="{% url 'add_transaction' %}" class="btn btn-primary btn-lg" style="border-radius: 5px; background-color: #3a7e7e; border: none; padding: 15px 30px; font-size: 18px; font-weight: 600; text-decoration: none;">
-                            Create Transaction
-                        </a>
-                    </div>
 
+
+                    <!--! hhhh -->
+                    {% if user.is_staff %}
+                    <br>
                     <p>
-                        Log into admin view to view transactions.
+                        Click the button below to create a transaction.
                     </p>
+                    {% else %}
+                    <p style="color: rgb(158, 0, 0);">
+                        Log into admin create a transaction.
+                    </p>
+
+                    {% endif %}
+
+
+
+                    <!--! hhhh -->
+
 
                     {% if user.is_staff %}
                     <div class="mt-4">
-                        <a href="{% url 'view_transactions' %}" class="btn btn-primary btn-lg" style="border-radius: 5px; background-color: #3a7e7e; border: none; padding: 15px 30px; font-size: 18px; font-weight: 600; text-decoration: none;">
+                        <a href="{% url 'add_transaction' %}" class="btn btn-primary btn-lg"
+                            style="border-radius: 5px; background-color: #3a7e7e; border: none; padding: 15px 30px; font-size: 18px; font-weight: 600; text-decoration: none;">
+                            Create Transaction
+                        </a>
+                    </div>
+                    {% endif %}
+
+
+
+                    <div class="instruction-step">
+                        <h3>View Transaction</h3>
+                    </div>
+
+
+
+                    {% if user.is_staff %}
+                    <br>
+                    <p>
+                        Click the button below to view transactions.
+                    </p>
+                    {% else %}
+                    <p style="color: rgb(158, 0, 0);">
+                        Log into admin view to view transactions.
+                    </p>
+
+                    {% endif %}
+
+
+
+
+                    {% if user.is_staff %}
+                    <div class="mt-4">
+                        <a href="{% url 'view_transactions' %}" class="btn btn-primary btn-lg"
+                            style="border-radius: 5px; background-color: #3a7e7e; border: none; padding: 15px 30px; font-size: 18px; font-weight: 600; text-decoration: none;">
                             View Transactions
                         </a>
                     </div>
@@ -135,16 +177,19 @@
                     <div class="instruction-step">
                         <h3>Add Medicine</h3>
                         <p>
-                            To add new medicine details, click on the <strong>Medicines</strong> link in the navigation 
-                            bar and select the <strong>Add Medicine</strong> button. Fill in the required details and submit 
+                            To add new medicine details, click on the <strong>Medicines</strong> link in the navigation
+                            bar and select the <strong>Add Medicine</strong> button. Fill in the required details and
+                            submit
                             to add the medicine to the system.
                         </p>
                     </div>
                     <div class="instruction-step">
                         <h3>Add Patient</h3>
                         <p>
-                            To add a new patient's information, click on the <strong>Patients</strong> link in the navigation 
-                            bar and then click the <strong>Add Patient</strong> button. Complete the form with the patient's 
+                            To add a new patient's information, click on the <strong>Patients</strong> link in the
+                            navigation
+                            bar and then click the <strong>Add Patient</strong> button. Complete the form with the
+                            patient's
                             details and save it to add them to the system.
                         </p>
                     </div>
